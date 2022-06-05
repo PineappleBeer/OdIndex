@@ -730,7 +730,7 @@ function autoCache()
 	if (!$config['cache']['smart']) return false;/*未开启缓存直接返回*/
 	$keyNum = count($cacheInitialization);/*校验初始化的时候配置文件有几个键*/
 	$cacheNow = getConfig('cache.json');
-	if (count($cacheNow) !== $keyNum) $cacheNow = $cacheInitialization;/*如果校验发现配置丢失就重新初始化*/
+	if (is_countable($cacheNow) && count($cacheNow) !== $keyNum) $cacheNow = $cacheInitialization;/*如果校验发现配置丢失就重新初始化*/
 	$queueConf = getConfig('queue.json');
 	$lag = time() - $cacheNow['last_count'];
 	if ($lag >= 30) {
