@@ -736,7 +736,7 @@ function autoCache()
 	if ($lag >= 30) {
 		$velo = round($cacheNow['requests'] / $lag, 2);/*获得速度,至少统计30秒*/
 		$cacheNow['last_count'] = time();
-		array_push($cacheNow['periods'], $velo);
+		is_array($cacheNow['periods']) && array_push($cacheNow['periods'], $velo);
 		if (count($cacheNow['periods']) > 10) array_shift($cacheNow['periods']);
 		$cacheNow['requests'] = 0;
 	} else {
